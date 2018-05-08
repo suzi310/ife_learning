@@ -1,0 +1,45 @@
+html {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+}
+
+body {
+    margin: 0 auto;
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size:2.6rem;
+}
+
+header {
+    text-align: center;
+    width: 20%;
+    height: 900px;
+    padding-top: 30px;
+    margin-right: 20px;
+    float: left;
+    color: #fff;
+    background-color: rgba(62, 133, 255, 0.73);
+}
+
+.content {
+    padding-top: 1rem;
+}
+
+.label{
+    font-weight: bold;
+}
+
+.info {
+    margin-left: 1rem;
+    margin-right: 5rem;
+}
+
+.card-content > div {
+    margin-bottom: 10px;
+}
