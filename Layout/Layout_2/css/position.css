@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+}
+.left {
+    width: 300px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    position: absolute;
+    top: 0;
+    left: 300px;
+    padding: 5px;
+    /*margin-left: 300px;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}

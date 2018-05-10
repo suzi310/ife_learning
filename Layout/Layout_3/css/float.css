@@ -1,0 +1,23 @@
+.container {
+    overflow: hidden;
+}
+.left {
+    float: left;
+    padding: 5px;
+    width: calc(100% - 500px);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    float: left;
+    width: 500px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}

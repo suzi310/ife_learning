@@ -1,0 +1,34 @@
+.container {
+    overflow: hidden;
+}
+.left {
+    float: left;
+    padding: 5px;
+    width: 300px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    float: right;
+    width: 300px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}
+
+.middle {
+    float: left;
+    width: calc(100% - 600px);
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 10px #550b52;
+    background-color: #555555;
+}

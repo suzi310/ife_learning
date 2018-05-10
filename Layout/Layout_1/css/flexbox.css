@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+.left {
+    flex: 3;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    flex: 7;
+    width: 70%;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}

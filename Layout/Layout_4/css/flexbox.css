@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+.left {
+    width: 300px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    width: 300px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}
+
+.middle {
+    flex: 1;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 10px #550b52;
+    background-color: #555555;
+}

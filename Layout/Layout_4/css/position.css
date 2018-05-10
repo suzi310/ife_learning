@@ -1,0 +1,41 @@
+.container {
+    position: relative;
+}
+.left {
+    position: absolute;
+    width: 300px;
+    padding: 5px;
+    margin-right: 500px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 3px #f00;
+    background-color: aqua;
+}
+
+.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    padding: 5px;
+    /*margin-left: 300px;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 5px #0f0;
+    background-color: chocolate;
+}
+
+.middle {
+    position: absolute;
+    top: 0;
+    left: 300px;
+    right: 300px;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 10px #550b52;
+    background-color: #555555;
+}
