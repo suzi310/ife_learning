@@ -169,15 +169,13 @@ ul, li {
 /******************************/
 #chat {
     flex:1;
-    height: 1020px;
-    overflow: scroll;
-    float: right;
     background-color: #fff;
 }
 
 #header {
     overflow: hidden;
     border-bottom: 1px solid #b5b5b5;
+    background-color: #fff;
 }
 
 .chat-title {
@@ -205,6 +203,12 @@ ul, li {
     font-family: "Proxima Nova Semibold", sans-serif;
 }
 
+.roll_list {
+    height: 80%;
+    overflow: scroll;
+}
+.roll_list::-webkit-scrollbar {display:none}
+
 .name {
     margin: 5px 0;
     font-size: 16px;
@@ -230,6 +234,7 @@ ul, li {
 
 #base {
     display: flex;
+    /*margin-top: 90px;*/
 }
 
 #chats {
