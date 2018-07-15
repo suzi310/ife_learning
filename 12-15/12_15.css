@@ -207,7 +207,7 @@ ul, li {
     height: 80%;
     overflow: scroll;
 }
-.roll_list::-webkit-scrollbar {display:none}
+/* .roll_list::-webkit-scrollbar {display:none} */
 
 .name {
     margin: 5px 0;
