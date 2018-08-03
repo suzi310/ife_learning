@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<div id="wrapper">
+    <div id="news-top" class="section">
+        <h3>Some title</h3>
+        <div class="content">
+            <ul>
+                <li><span>HTML</span><a href="">Some Link1</a></li>
+                <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                <li><span>CSS</span><a href="">Some Link3</a></li>
+                <li><span>JS</span><a href="">Some Link4</a></li>
+            </ul>
+        </div>
+        <img src="">
+        <p class="">Some Text</p>
+    </div>
+    <div id="news-normal" class="section">
+        <h3>Some title</h3>
+        <div class="content">
+            <ul>
+                <li><span>HTML</span><a href="">Some Link1</a></li>
+                <li><span>HTML</span><a href="">Some Link2</a></li>
+                <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                <li><span>CSS</span><a href="">Some Link4</a></li>
+            </ul>
+        </div>
+        <img src="">
+        <p class="">Some Text</p>
+    </div>
+</div>
+<div>
+    <div id="result"></div>
+    <div><button id="btn1">返回页面中所有li标签</button></div>
+    <br>
+    <div><div>返回某个section下所有span中内容为HTML的span标签</div><div><button id="btn2-1">news-top</button>
+        <button id="btn2-2">news-normal</button></div></div>
+        <br>
+        <div>
+            <div>返回某个section下，所有所包含span内容为spanCont的LI标签</div>
+            <div>
+                <label>spanCont:<input type="text" name="" id="input" placeholder="请输入spanCont"></label>
+                <button id="btn3-1">news-top</button>
+                <button id="btn3-2">news-normal</button>
+            </div>
+        </div>
+        <br>
+        <div>返回某个section下，class为active的链接中包含的文字内容</div>
+            <div>
+                <button id="btn4-1">news-top</button>
+                <button id="btn4-2">news-normal</button>
+            </div>
+        </div>
+
+</div>
+<script>
+    var result = document.querySelector('#result');
+    function getAllListItem() {
+        // 返回页面中所有li标签
+        var lis = document.querySelectorAll('li');
+        var txt = '';
+        for(var i=0;i<lis.length;i++){
+            txt += lis[i].innerHTML+'<br>';
+        }
+        result.innerHTML = txt;
+    }
+
+    function findAllHtmlSpanInOneSection(sectionId) {
+        // 返回某个section下所有span中内容为HTML的span标签
+        var section = document.querySelector('#'+sectionId);
+        var spans = section.querySelectorAll('span');
+        var txt = '';
+        for(var i=0;i<spans.length;i++){
+            if(spans[i].innerHTML == 'HTML'){
+                txt += 'HTML<br>';
+            }
+        }
+        result.innerHTML = txt;
+    }
+
+    function findListItem(sectionId) {
+        // 返回某个section下，所有所包含span内容为spanCont的LI标签
+        var spanCont = document.querySelector('input').value;
+        var section = document.querySelector('#'+sectionId);
+        var spans = section.querySelectorAll('span');
+        var txt = '';
+        for(var i=0;i<spans.length;i++){
+            if(spans[i].innerHTML == spanCont){
+                txt += spans[i].parentNode.innerHTML+'<br>';
+            }
+        }
+        result.innerHTML = txt;
+
+    }
+
+    function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+        var section = document.querySelector('#'+sectionId);
+        var arr = section.querySelectorAll('.active');
+        var txt = '';
+        for(var i=0;i<arr.length;i++){
+            txt += arr[i].innerHTML+'<br>';
+        }
+        result.innerHTML = txt;
+
+    }
+    document.querySelector("#btn1").onclick=function(){getAllListItem()};
+    document.querySelector("#btn2-1").onclick=function(){findAllHtmlSpanInOneSection("news-top")};
+    document.querySelector("#btn2-2").onclick=function(){findAllHtmlSpanInOneSection("news-normal")};
+    document.querySelector("#btn3-1").onclick=function(){findListItem("news-top")};
+    document.querySelector("#btn3-2").onclick=function(){findListItem("news-normal")};
+    document.querySelector("#btn4-1").onclick=function(){getActiveLinkContent("news-top")};
+    document.querySelector("#btn4-2").onclick=function(){getActiveLinkContent("news-normal")};
+</script>
+</body>
+</html>
