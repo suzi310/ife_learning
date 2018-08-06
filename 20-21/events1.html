@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>event</title>
+</head>
+<body>
+<input id="name" type="text">    
+<button id="submit-btn">Submit</button>
+<script>
+	function onsubmit(){
+		console.log(document.querySelector('#name').value);
+	}
+	document.querySelector('#submit-btn').onclick = onsubmit;
+	document.querySelector('#name').onkeydown = function(){
+			// if(event.which){
+				if (event.keyCode == 13) {
+					onsubmit();
+				}else if(event.keyCode == 27){
+					document.querySelector('#name').value = '';
+				}
+			// }
+	}
+</script>
+</body>
+</html>

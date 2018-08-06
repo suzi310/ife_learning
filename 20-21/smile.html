@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smile</title>
+	<style type="text/css">
+		.box {
+			width: 480px;
+			height: 480px;
+			background-image: url('./erik_ce204002.jpg');
+			background-repeat: no-repeat;
+			background-position: 0 0;
+		}
+	</style>
+</head>
+<body>
+<div class="box"></div>
+<script type="text/javascript">
+	var box = document.querySelector('.box');
+	var i = 0;
+	tid = setInterval(down, 100);
+	function down(){
+		if(i<17){
+			box.style.backgroundPosition = "0 "+ 480*(-i)+"px";
+			i++;
+		}else{
+			clearInterval(tid);
+			tid2 = setInterval(up, 100);
+		}
+	}
+	function up(){
+		if(i>0){
+			i--;
+			box.style.backgroundPosition = "0 "+ 480*(-i)+"px";
+		}else{
+			clearInterval(tid2);
+			tid = setInterval(down, 100);
+		}
+	}
+</script>
+</body>
+</html>
