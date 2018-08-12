@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>9Sort</title>
+</head>
+<body>
+<script>
+	var arr1 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+	var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+	var arr3 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+	var arr4 = [
+    {
+        id: 1,
+        name: 'candy',
+        value: 40
+    }, {
+        id: 2,
+        name: 'Simon',
+        value: 50
+    }, {
+        id: 3,
+        name: 'Tony',
+        value: 45
+    }, {
+        id: 4,
+        name: 'Annie',
+        value: 60
+    }
+];
+function compare1(a,b){
+	return a-b;
+}
+function compare2(a,b){
+	return b-a;
+}
+console.log("arr1 从大到小：",arr1.sort(compare2));
+console.log("arr1 从小到大：",arr1.sort(compare1));
+console.log("arr2 a-z：",arr2.sort());
+console.log("arr2 z-a：",arr2.sort().reverse());
+console.log("arrr3 按照每个元素中第二个数从大到小的顺序进行排序:",arr3.sort(function(a,b){
+	return b[1]-a[1];
+}));
+console.log("arr4 将上面数组分别按元素对象的value值从小到大进行排序:",arr4.sort(function(a,b){
+	return a.value-b.value;
+}));
+</script>
+</body>
+</html>
