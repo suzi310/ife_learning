@@ -175,7 +175,7 @@
 	input.addEventListener('keydown',keyboardListener);
 	function keyboardListener(e) {
 	    if(e.keyCode == 13) {
-	    	var str = ul.childNodes.item(nowSelectTipIndex).innerHTML;
+	    	var str = ul.childNodes.item(nowSelectTipIndex).innerText;
 	        input.value = htmlDecodeByRegExp(str);
 	        hide();
 	        resetSelect();
