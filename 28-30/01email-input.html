@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>01email-input</title>
+	<style type="text/css">
+		.email-sug {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.email-sug li {
+			border: solid 1px #eee;
+		}
+		.email-sug li, input {
+			padding: 3px 10px;
+			width: 200px;
+			height: 22px;
+		}
+		.selected {
+			background-color: rgba(200,30,30, .3);
+		}
+		.email-sug li:hover {
+			background-color: rgba(30,30,200, .3);
+		}
+	</style>
+</head>
+<body>
+<div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+</div>
+<script>
+	var wrapper =document.querySelector('.wrapper');
+	var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+	var input = document.querySelector("#email-input");
+	var ul = document.querySelector("#email-sug-wrapper");
+	// 增加一个变量，用于存储当前选中的提示Li的序号
+	var nowSelectTipIndex = 0;
+	//事件监听 
+	input.addEventListener('input',inputHandle);
+	function inputHandle(e){
+		resetSelect();
+		var str = getInput();
+		addIntoUl(concatPostfix(str));
+		showOrHide(str)
+	};
+	//根据输入框状态显示或隐藏
+	function showOrHide(str){
+		if(str == ""){
+			hide();
+		}else{
+			show();
+		}
+	}
+	//获取用户输入
+	function getInput(){
+		return tirm(input.value);
+	}
+	//生成提示框中的提示内容
+	function concatPostfix(value){
+		var lis = [];
+		var str = value;
+		var strAfter = '';
+		var postfixAter = [];
+		if(value.indexOf('@')>=0){
+			str = value.slice(0,value.indexOf('@'));
+			strAfter = value.slice(value.indexOf('@')+1);
+			postfixAter = postfixList.filter(function(a){
+				return a.indexOf(strAfter)+1;
+			});
+		}
+		if(postfixAter.length == 0){
+			postfixAter = postfixList;
+		}			
+		for(var i=0;i<postfixAter.length;i++){
+			var li = document.createElement('li');
+			var textNode = document.createTextNode(htmlEncodeByRegExp(str+'@'+postfixAter[i]));
+			li.appendChild(textNode);
+			lis.push(li);
+		}
+		//基于DOM
+		// lis[0].classList.add('selected');
+		lis[nowSelectTipIndex].classList.add('selected');
+		return lis;
+	}
+	//将生成的内容添加到ul
+	function addIntoUl(arr){
+		ul.innerHTML = '';
+		for(var i=0;i<arr.length;i++){
+			ul.appendChild(arr[i]);
+		}
+	}
+	//隐藏提示框
+	function hide() {
+	    ul.style.display = "none";
+	    input.focus();
+	}
+	//显示提示框
+	function show() {
+		ul.style.display = "block";
+	}
+	//去除字符串前后空格
+	function tirm(str){
+		return str.replace(/^\s*/,'').replace(/\s*$/,'');
+	}
+	//监听鼠标点击事件
+	ul.onclick = function(e){
+		if(e.target.nodeName.toUpperCase() == 'LI'){
+			input.value = htmlDecodeByRegExp(e.target.innerText);
+			hide();
+		}
+	}
+	//转码
+	function htmlEncodeByRegExp(str){ 
+             var s = "";
+             if(str.length == 0) return "";
+             s = str.replace(/&/g,"&");
+             s = s.replace(/</g,"<");
+             s = s.replace(/>/g,">");
+             s = s.replace(/ /g," ");
+             s = s.replace(/\'/g,"'");
+             s = s.replace(/\"/g,'"');
+             return s; 
+    }
+	//解码
+    function htmlDecodeByRegExp(str){ 
+             var s = "";
+             if(str.length == 0) return "";
+             s = str.replace(/&/g,"&");
+             s = s.replace(/</g,"<");
+             s = s.replace(/>/g,">");
+             s = s.replace(/ /g," ");
+             s = s.replace(/'/g,"\'");
+             s = s.replace(/"/g,"\"");
+             return s; 
+       }
+    //重置选中状态
+	function resetSelect() {	
+    	//基于DOM
+	    // var s = document.querySelector(".selected");
+	    // if (s != document.querySelectorAll('li')[0]) {
+	    //     s.classList.remove("selected");
+	    //     document.querySelectorAll('li')[0].classList.add('selected');
+	    // }
+	    //基于数据
+	    nowSelectTipIndex = 0;
+	} 
+	//监听特殊3个键的键盘事件，这个事件可能就是inputDom的输入监听，也有可能是另外一个，请自己测试后判断
+	// input.onkeydown = function(e){
+	// 	var s = document.querySelector(".selected");
+	// 	if(e.keyCode == 38){
+	// 		s.classList.remove("selected");
+	// 		if(s!= ul.firstChild){
+	// 			s.previousSibling.classList.add('selected');
+	// 		}else{
+	// 			ul.lastChild.classList.add('selected');
+	// 		}
+	// 	}else if(e.keyCode == 40){
+	// 		s.classList.remove("selected");
+	// 		if(s!= ul.lastChild){
+	// 			s.nextSibling.classList.add('selected');
+	// 		}else{
+	// 			ul.firstChild.classList.add('selected');
+	// 		}
+	// 	}else if(e.keyCode == 13){
+	// 		s = document.querySelector(".selected");
+	// 		input.value = s.innerText;
+	// 		hide();
+	// 	}
+	// }
+	//基于数据
+	// 增加一个变量，用于存储当前选中的提示Li的序号
+	// var nowSelectTipIndex = 0;
+	//监听特殊3个键的键盘事件 
+	input.addEventListener('keydown',keyboardListener);
+	function keyboardListener(e) {
+	    if(e.keyCode == 13) {
+	    	var str = ul.childNodes.item(nowSelectTipIndex).innerHTML;
+	        input.value = htmlDecodeByRegExp(str);
+	        hide();
+	        resetSelect();
+	    }else if(e.keyCode == 38||e.keyCode == 40){
+	    	var lis = document.querySelectorAll('li');
+	    	if(e.keyCode == 38) {
+		        if (nowSelectTipIndex == 0) {
+		            nowSelectTipIndex = lis.length-1;
+		        } else {
+		            nowSelectTipIndex--;
+		        }
+		    
+	    		console.log(nowSelectTipIndex);
+		    }else{
+		        if(nowSelectTipIndex == lis.length-1) {
+		            nowSelectTipIndex=0;
+		        } else {
+		            nowSelectTipIndex++;
+		        }
+	    		console.log(nowSelectTipIndex);
+		    
+		    }
+			var inputText = getInput();
+			addIntoUl(concatPostfix(inputText));
+			showOrHide(inputText);
+	    }else if(e.keyCode == 27){
+	    	input.select();
+	    }
+	    
+	}
+</script>
+</body>
+</html>
